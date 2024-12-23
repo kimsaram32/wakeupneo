@@ -1,0 +1,47 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+@font-face {
+  font-family: font;
+  src: url('font.woff2');
+  font-display: swap;
+}
+
+:root {
+  --text: #B7EDC8;
+  --outline: #519A6C;
+  --line: color-mix(in oklab, #2a4d39, transparent 80%);
+}
+
+main {
+  block-size: 100dvb;
+  display: grid;
+  place-items: center;
+  background: #000;
+}
+
+main::after {
+  position: absolute;
+  content: '';
+  inset: 0;
+  background: linear-gradient(var(--line) 25%, transparent 25%) 0 0 / 100% 0.4rem;
+}
+
+p {
+  font-size: 2.4rem;
+  font-family: font, monospace;
+  line-height: 1.5;
+  color: var(--text);
+  text-shadow:
+    0 0 0.8em var(--outline),
+    0 0 0.1em var(--outline),
+    0 0 0.1em var(--outline);
+  filter: blur(1px);
+}
+
+p[data-typing] {
+  inline-size: min(30ch, 86%);
+  font-size: clamp(1.2rem, 0.783rem + 2.087vw, 2.4rem);
+}
