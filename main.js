@@ -1,4 +1,4 @@
-const TARGET_DATE = new Date(2025, 0, 1);
+const TARGET_DATE = new Date(2025, 1, 3);
 const LINES = [
   'Wake up, Yiche...',
   'The new year has you...',
