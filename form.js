@@ -12,5 +12,5 @@ form.addEventListener('submit', (event) => {
     message,
   });
 
-  location.href = `/countdown?${searchParams}`;
+  location.href = `./countdown?${searchParams}`;
 });
