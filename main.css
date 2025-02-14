@@ -10,38 +10,130 @@
 }
 
 :root {
-  --text: #B7EDC8;
-  --outline: #519A6C;
-  --line: color-mix(in oklab, #2a4d39, transparent 80%);
+  --color-primary: #519a6c;
+
+  --color-line: color-mix(in oklab, #2a4d39, transparent 80%);
+  --color-text: #b7edc8;
+
+  --color-input-text: #fff;
+  --color-input-bg: #000703;
+
+  --color-selection-text: #fff;
+  --color-selection-bg:
+    oklch(from var(--color-primary) calc(l - 0.3) calc(c + 0.02) h);
+
+  --text-body: clamp(1.2rem, 1.061rem + 0.696vw, 1.6rem);
+  --text-input: clamp(1.125rem, 1.099rem + 0.13vw, 1.2rem);
+  --text-heading: clamp(1.6rem, 1.322rem + 1.391vw, 2.4rem);
+  --text-countdown: clamp(2rem, 1.861rem + 0.696vw, 2.4rem);
+  --text-countdown-typing: clamp(1.2rem, 0.783rem + 2.087vw, 2.4rem);
+
+  --shadow-matrix:
+    0 0 0.8em var(--color-primary),
+    0 0 0.1em var(--color-primary),
+    0 0 0.1em var(--color-primary);
+  /*
+  --shadow-input-in:
+    inset -1px -1px #0a0a0a,
+    inset 1px 1px #ccc,
+    inset -2px -2px #555,
+    inset 2px 2px #dfdfdf;
+  */
+  --shadow-input-out:
+    inset -1px -1px #fff,
+    inset 1px 1px #555,
+    inset -2px -2px #dfdfdf,
+    inset 2px 2px #0a0a0a;
+}
+
+::selection {
+  color: var(--color-selection-text);
+  background-color: var(--color-selection-bg);
+}
+
+body {
+  background: #000;
+  font-family: font, monospace;
+  line-height: 1.5;
+  color: var(--color-text);
+  text-shadow: var(--shadow-matrix);
+  font-size: var(--text-body);
+}
+
+h1 {
+  font-size: var(--text-heading);
+}
+
+input, button, textarea {
+  padding-inline: 0.8rem;
+  padding-block: 0.4rem;
+  font: inherit;
+  font-size: var(--text-input);
+  color: var(--color-input-text);
+  background-color: var(--color-input-bg);
+  border-radius: 0;
+  border: none;
+  box-shadow: var(--shadow-input-out);
+
+  &:focus-visible, &:active {
+    outline: none;
+    box-shadow: var(--shadow-input-out), var(--shadow-matrix);
+  }
+}
+
+textarea {
+  resize: none;
 }
 
 main {
   block-size: 100dvb;
   display: grid;
-  place-items: center;
-  background: #000;
+  place-content: center;
+  filter: blur(1px);
 }
 
 main::after {
   position: absolute;
   content: '';
   inset: 0;
-  background: linear-gradient(var(--line) 25%, transparent 25%) 0 0 / 100% 0.4rem;
+  background: linear-gradient(var(--color-line) 25%, transparent 25%) 0 0 / 100% 0.4rem;
+  pointer-events: none;
 }
 
-p {
-  font-size: 2.4rem;
-  font-family: font, monospace;
-  line-height: 1.5;
-  color: var(--text);
-  text-shadow:
-    0 0 0.8em var(--outline),
-    0 0 0.1em var(--outline),
-    0 0 0.1em var(--outline);
-  filter: blur(1px);
+.main-form {
+  &, form, .controls, label {
+    display: grid;
+  }
+
+  & {
+    gap: 2rem;
+  }
+
+  form {
+    inline-size: min(92vi, 32rem);
+    gap: 2rem;
+  }
+
+  .controls {
+    gap: 1.6rem;
+  }
+
+  label {
+    gap: 1rem;
+  }
+
+  button {
+    justify-self: start;
+  }
 }
 
-p[data-typing] {
-  inline-size: min(30ch, 86%);
-  font-size: clamp(1.2rem, 0.783rem + 2.087vw, 2.4rem);
+.main-countdown {
+  p {
+    font-size: var(--text-countdown);
+  }
+
+  p[data-typing] {
+    inline-size: min(30ch, 86vi);
+    font-size: var(--text-countdown-typing);
+  }
 }

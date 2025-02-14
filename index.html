@@ -7,17 +7,28 @@
     <link rel="preload" href="font.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="main.css" media="screen">
 
-    <title>Matrix Countdown</title>
+    <title>Wakeupneo</title>
   </head>
   <body>
-    <main>
-      <p class="content">
-        <span class="days"></span>d<br>
-        <span class="hours"></span>h<br>
-        <span class="minutes"></span>m<br>
-        <span class="seconds"></span>s
-      </p>
+    <main class="main-form">
+      <h1>Wakeupneo</h1>
+      <form data-form>
+        <div class="controls">
+          <label for="date">
+            Date
+            <input id="date" name="date" type="date" required>
+          </label>
+          <label for="message">
+            Message
+            <textarea id="message" name="message" rows="8" required>Wake up, Neo...
+The matrix has you...
+Follow the white rabbit.
+Knock, knock, Neo.</textarea>
+          </label>
+        </div>
+        <button>Start waiting</button>
+      </form>
     </main>
-    <script src="main.js"></script>
+    <script src="form.js"></script>
   </body>
 </html>
